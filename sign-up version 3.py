@@ -2,7 +2,7 @@ import customtkinter as ctk
 import tkinter as tk
 from customtkinter import *
 import sqlite3
-
+import hashlib
 
 ####----(Account database)----####
 
@@ -28,8 +28,17 @@ def isMinimum(data_input, minimum):
     else:
         return True
     
-def hashing():
-    pass
+def hashing(password_input):
+    current_page = top_label_text.get()
+    if current_page == 'Log in':
+        h = hashlib.new('SHA256')
+        c.execute(f"""SELECT *
+                  FROM Accounts
+                  WHERE Password = '{h.update(log_passwrd_inp.get().encode())}'""")
+    elif current_page == 'Register':
+        h = hashlib.new('SHA256')
+        h.update(Sign_passwrd_inp.get().encode())
+        return h.hexdigest()
 
 ####----(Start of account GUI)----####
 
@@ -128,6 +137,7 @@ log_passwrd_inp.place(relx=0.5,y=145, anchor=CENTER)
 
 def log_submit_func():
     print('it works')
+    account.destroy()
 
 log_submit = ctk.CTkButton(Log_in,
                            text='Log in',
@@ -226,15 +236,12 @@ def password_character_check(password):
     else:
         return True
     
-def username_duplicates():
-    pass
 
 def register():
     username = Sign_username_input.get()
-    password = Sign_passwrd_inp.get()
+    password = hashing(Sign_passwrd_inp.get())
     c.execute(f"""INSERT INTO Accounts VALUES ('0','{username}','{password}')""")
     conn.commit()
-    conn.close()
 
     
 
@@ -256,6 +263,8 @@ def sign_submit_func():
 
     else:
         register()
+        conn.close()
+        account.destroy()
 
     
 
