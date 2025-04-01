@@ -52,30 +52,6 @@ class text():
 title = text('Chef Up', False, '#FCCD2A', Large_Momentz_F, (15,195))
 version_title = text('Alpha', True, 'black', defult, (250,215)) ; version = text('Version 0.9.0', True, 'black', defult, (1140,720))
 
-
-
-
-
-#music
-songs = (
-    'Sounds\Solo_Leveling_OST_FULL_DARK_ARIA_LV2.mp3',
-    'Sounds\Tek_it_instrumental.mp3',
-    
-    #menu music
-    'Sounds\PinkPantheress_Feel_complete_Instrumental.mp3',
-    'Sounds\Terraria_Infernum_Mod__Sky_After_Rain.mp3',
-
-    #game music
-    'Sounds/Kendrick_Lamar_Duckworth_Instrumental.mp3',
-    'Sounds\Kendrick_Lamar_i_Instrumental.mp3',
-    'Sounds\Kendrick_Lamar_The_Heart_Part_5_Instrumental.mp3',
-
-    )
-
-menu_music = pygame.mixer.Sound(songs[3])
-
-game_music = pygame.mixer.Sound(songs[2])
-
 #button class (text input, font type, text colour, base colour for button, hover colour for button, width, height, position)
 class button():
     def __init__(self, text, font, text_colour, base_colour, hover_colour, width, height, pos):
